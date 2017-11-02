@@ -235,8 +235,7 @@ body {
   margin: 15px 0px;
   background: rgba(255, 255, 255, 0.12);
   /*border: 4px solid #000;*/
-  /*box-shad
-  \ow: 0 0 10px rgba(0, 0, 0, 0.15); }*/
+  /*box-shadow: 0 0 10px rgba(0, 0, 0, 0.15); }*/
 
 .reveal section img.plain {
   border: 0;
