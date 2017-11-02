@@ -1,0 +1,11 @@
+.reveal section img {
+  border: unset;
+  box-shadow: unset;
+}
+
+/*body {
+    background-image: url('../images/novartis-logo.pdf');
+    background-repeat: no-repeat;
+    background-position: bottom left;
+    background-size: 15%;
+}*/
