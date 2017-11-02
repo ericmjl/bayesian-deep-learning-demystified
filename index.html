@@ -2,8 +2,7 @@
 	<head>
         <title>An Attempt at Demystifying Bayesian Deep Learning</title>
         <!-- Head.JS -->
-        <script type="text/javascript" src="lib/js/head.min.js">
-        </script>
+        <script type="text/javascript" src="lib/js/head.min.js"></script>
         <link rel="stylesheet" href="lib/css/zenburn.css">
 		<link rel="stylesheet" href="css/reveal.css">
 		<link rel="stylesheet" href="css/theme/simple.css">
@@ -15,6 +14,7 @@
 				<section id="Introduction Slide">
                     <h2>An Attempt At Demystifying Bayesian Deep Learning</h2>
                     <p>Eric J. Ma</p>
+                    <p><i class="fa fa-twitter" aria-hidden="true"></i> @ericmjl, <i class="fa fa-github"></i> ericmjl</p>
                     <p><i>PyData NYC 2017</i></p>
                 </section>
                 <section>
@@ -38,26 +38,29 @@
                             </ul>
                         </p>
                     </section>
-                    <section>
+                    <section data-transition="fade">
                         <h2>Take-Home Point 1</h2>
                         <p>
                             Deep Learning is nothing more than <b>compositions of functions on matrices</b>.
                         </p>
                         <img src="images/deepnet_regressor-matrices.pdf" alt="" width=40%>
                     </section>
-                    <section>
+                    <section data-transition="fade">
                         <h2>Take-Home Point 2</h2>
                         <p>Bayesian deep learning is nothing more than <b>learning a distribution for each parameter</b> rather than a point estimate.</p>
                         <img src="images/deepnet_regressor-matrices-bayesian.pdf" alt="" width=40%>
                     </section>
                 </section>
                 <section id="Assumptions">
-                    <h2>Assumptions</h2>
+                    <h2>Outline</h2>
                     <p>
-                        <ul>
-                            <li class="fragment">Have seen a matrix multiplication operation before.</li>
-                            <li class="fragment">Somewhat comfortable with math notation.</li>
-                        </ul>
+                        <ol>
+                            <li class="fragment">Linear Regression 3 Ways</li>
+                            <li class="fragment">Logistic Regression 3 Ways</li>
+                            <li class="fragment">Deep Nets 3 Ways</li>
+                            <li class="fragment">Going Bayesian</li>
+                            <li class="fragment">Example Neural Network</li>
+                        </ol>
                     </p>
                 </section>
                 <section id="Linear Regression" data-transition="zoom">
@@ -183,12 +186,20 @@
                             <li class="fragment">syntax</li>
                         </ul>
                     </section>
-                    <section id="Bayesian Deep Net Multiclass Classification">
-                        <h3>Predict Forest Cover Type</h3>
+                </section>
+                <section id="Bayesian Deep Net Multiclass Classification">
+                    <h2>Predict Forest Cover Type</h2>
+                    <section id="intro">
+                        <h3>Network Architecture</h3>
+                        <img src="images/forest-cover.pdf" alt="" width=60%>
+                    </section>
+                    <section id="code">
                         <pre>
                             <code data-trim data-noescape class="py">
                             import theano.tensor as tt  # pymc devs are discussing new backends
                             import pymc3 as pm
+
+                            n_hidden = 20
 
                             with pm.Model() as nn_model:
                                 # Define weights
@@ -221,10 +232,18 @@
                                 trace = approx.sample(5000)
                             </code>
                         </pre>
-
                     </section>
-                    <section id="Bayesian Deep Net Regressor">
-
+                    <section id="Layer 1 Weights" data-transition="fade">
+                        <h3>1st Layer Weights</h3>
+                        <img src="images/layer1-weights.pdf" alt="" width=100%>
+                    </section>
+                    <section id="Layer 2 Weights" data-transition="fade">
+                        <h3>2nd Layer Weights</h3>
+                        <img src="images/layer2-weights.pdf" alt="" width=100%>
+                    </section>
+                    <section id="Output Weights" data-transition="fade">
+                        <h3>Output Weights</h3>
+                        <img src="images/layer3-weights.pdf" alt="" width=100%>
                     </section>
                 </section>
                 <section id="Credits">
@@ -246,6 +265,22 @@
                         </ul>
                     </p>
                 </section>
+                <section id="recap">
+                    <section data-transition="fade">
+                        <h2>Take-Home Point 1</h2>
+                        <p>
+                            Deep Learning is nothing more than <b>compositions of functions on matrices</b>.
+                        </p>
+                        <img src="images/deepnet_regressor-matrices.pdf" alt="" width=40%>
+                    </section>
+                    <section data-transition="fade">
+                        <h2>Take-Home Point 2</h2>
+                        <p>Bayesian deep learning is nothing more than <b>learning a distribution for each parameter</b> rather than a point estimate.</p>
+                        <img src="images/deepnet_regressor-matrices-bayesian.pdf" alt="" width=40%>
+                    </section>
+                </section><section id="Thanks!">
+                    <h1>Thank you!</h1>
+                </section>
 			</div>
 		</div>
         <script type="text/javascript" src="js/reveal.js"></script>
@@ -265,5 +300,6 @@
                 ]
                 });
 		</script>
+        <script src="https://use.fontawesome.com/8f66f558d2.js"></script>
 	</body>
 </html>
