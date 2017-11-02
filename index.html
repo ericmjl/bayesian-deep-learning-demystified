@@ -1,10 +1,14 @@
 <html>
 	<head>
         <title>An Attempt at Demystifying Bayesian Deep Learning</title>
+        <!-- Head.JS -->
+        <script type="text/javascript" src="lib/js/head.min.js">
+        </script>
+        <link rel="stylesheet" href="lib/css/zenburn.css">
 		<link rel="stylesheet" href="css/reveal.css">
 		<link rel="stylesheet" href="css/theme/simple.css">
         <link rel="stylesheet" href="css/reveal-overrides.css">
-	</head>
+    </head>
 	<body>
 		<div class="reveal">
 			<div class="slides">
@@ -12,6 +16,17 @@
                     <h2>An Attempt At Demystifying Bayesian Deep Learning</h2>
                     <p>Eric J. Ma</p>
                     <p><i>PyData NYC 2017</i></p>
+                </section>
+                <section>
+                    <h2>Follow along!</h2>
+                    <section>
+                        <h3>On your phone</h3>
+                        <img src="images/qrcode.png" alt="" width=40%>
+                    </section>
+                    <section>
+                        <h3>On your laptop</h3>
+                        <a href="https://ericmjl.github.io/bayesian-deep-learning-demystified">https://ericmjl.github.io/bayesian-deep-learning-demystified</a>
+                    </section>
                 </section>
 				<section id="Outline and Take-Home Points" data-transition="zoom">
                     <section>
@@ -28,10 +43,12 @@
                         <p>
                             Deep Learning is nothing more than <b>compositions of functions on matrices</b>.
                         </p>
+                        <img src="images/deepnet_regressor-matrices.pdf" alt="" width=40%>
                     </section>
                     <section>
                         <h2>Take-Home Point 2</h2>
                         <p>Bayesian deep learning is nothing more than <b>learning a distribution for each parameter</b> rather than a point estimate.</p>
+                        <img src="images/deepnet_regressor-matrices-bayesian.pdf" alt="" width=40%>
                     </section>
                 </section>
                 <section id="Assumptions">
@@ -114,15 +131,103 @@
                         <p>Key Idea: Learn probability density over parameter space.</p>
                     </section>
                     <section>
-                        <h3>Visual Representation</h3>
+                        <h3>Intuition</h3>
                         <img src="images/linreg-estimates.pdf" alt="" width=60%>
+                    </section>
+                    <section data-transition="fade">
+                        <h3>From this...</h3>
+                        <img src="images/linreg-matrices.pdf" alt="" width=80%>
+                    </section>
+                    <section data-transition="fade">
+                        <h3>..to this</h3>
+                        <img src="images/linreg-matrices-bayesian.pdf" alt="" width=80%s>
+                    </section>
+                </section>
+                <section id="Bayesian Logistic Regression" data-transition="slide">
+                    <section>
+                        <h2>Bayesian Logistic Regression</h2>
+                    </section>
+                    <section data-transition="fade">
+                        <h3>From this...</h3>
+                        <img src="images/logreg-matrices.pdf" alt="" width=70%>
+                    </section>
+                    <section data-transition="fade">
+                        <h3>...to this</h3>
+                        <img src="images/logreg-matrices-bayesian.pdf" alt="" width=70%>
+                    </section>
+                </section>
+                <section id="Bayesian DeepNet Regressor" data-transition="slide">
+                    <section>
+                        <h2>Bayesian Deep Nets</h2>
+                    </section>
+                    <section data-transition="fade">
+                        <h3>From this...</h3>
+                        <img src="images/deepnet_regressor-matrices.pdf" alt="" width="60%">
+                    </section>
+                    <section data-transition="fade">
+                        <h3>...to this</h3>
+                        <img src="images/deepnet_regressor-matrices-bayesian.pdf" alt="" width="60%">
                     </section>
                 </section>
                 <section id="Ever-Expanding Cheat Sheet" data-transition="zoom">
                     <h2>Cheat Sheet</h2>
-                    <img src="images/infographic.pdf" alt="" width=80%>
+                    <img src="images/infographic.pdf" alt="" width=90%>
                 </section>
-                <section>
+                <section id="Examples Intro">
+                    <section>
+                        <img src="https://github.com/pymc-devs/pymc3/blob/master/docs/pymc3_logo.jpg?raw=true" alt="" width=30%>
+                        <p>Probabilistic Programming in Python. Provides:</p>
+                        <ul>
+                            <li class="fragment">statistical distributions</li>
+                            <li class="fragment">sampling algorithms</li>
+                            <li class="fragment">syntax</li>
+                        </ul>
+                    </section>
+                    <section id="Bayesian Deep Net Multiclass Classification">
+                        <h3>Predict Forest Cover Type</h3>
+                        <pre>
+                            <code data-trim data-noescape class="py">
+                            import theano.tensor as tt  # pymc devs are discussing new backends
+                            import pymc3 as pm
+
+                            with pm.Model() as nn_model:
+                                # Define weights
+                                weights_1 = pm.Normal('w_1', mu=0, sd=1,
+                                                      shape=(ann_input.shape[1], n_hidden),
+                                                      testval=init_1)
+                                weights_2 = pm.Normal('w_2', mu=0, sd=1,
+                                                      shape=(n_hidden, n_hidden),
+                                                      testval=init_2)
+                                weights_out = pm.Normal('w_out', mu=0, sd=1,
+                                                        shape=(n_hidden, ann_output.shape[1]),
+                                                        testval=init_out)
+
+                                # Define activations
+                                acts_1 = pm.Deterministic('activations_1',
+                                                          tt.tanh(tt.dot(ann_input, weights_1)))
+                                acts_2 = pm.Deterministic('activations_2',
+                                                          tt.tanh(tt.dot(acts_1, weights_2)))
+                                acts_out = pm.Deterministic('activations_out',
+                                                            tt.nnet.softmax(tt.dot(acts_2, weights_out)))  # noqa
+
+                                # Define likelihood
+                                out = pm.Multinomial('likelihood', n=1, p=acts_out,
+                                                     observed=ann_output)
+
+                            with nn_model:
+                                s = theano.shared(pm.floatX(1.1))
+                                inference = pm.ADVI(cost_part_grad_scale=s)  # approximate inference done using ADVI
+                                approx = pm.fit(100000, method=inference)
+                                trace = approx.sample(5000)
+                            </code>
+                        </pre>
+
+                    </section>
+                    <section id="Bayesian Deep Net Regressor">
+
+                    </section>
+                </section>
+                <section id="Credits">
                     <h2>Credits</h2>
                     <p>
                         <ul>
@@ -131,7 +236,7 @@
                         </ul>
                     </p>
                 </section>
-                <section>
+                <section id="Resources">
                     <h2>Resources</h2>
                     <p>
                         <ul>
@@ -143,9 +248,8 @@
                 </section>
 			</div>
 		</div>
-        <!-- HeadJS import: must come before revealjs. -->
-        <script type="text/javascript" src="js/head.js"></script>
         <script type="text/javascript" src="js/reveal.js"></script>
+        <!-- <script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script> -->
 		<script>
 			Reveal.initialize({
                 width: "100%",
@@ -153,6 +257,12 @@
                 margin: 0,
                 minScale: 1,
                 maxScale: 1,
+                dependencies: [
+                    // Syntax highlight for <code> elements
+                    { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    // MathJax
+                    { src: 'plugin/math/math.js', async: true }
+                ]
                 });
 		</script>
 	</body>
