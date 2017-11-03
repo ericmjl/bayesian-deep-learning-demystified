@@ -1,6 +1,5 @@
 # Custom
 images/*.png
-images/*.jpg
 .DS_Store
 
 # Byte-compiled / optimized / DLL files
