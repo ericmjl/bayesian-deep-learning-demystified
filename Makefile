@@ -4,5 +4,5 @@ IMAGES = $(patsubst images/%.pdf, images/%.jpg, $(PDFIMAGES))
 images: $(IMAGES)
 	echo
 
-images/%.jpg: images/%.pdf
-	convert -density 600 $< -quality 100 $@
+images/%.jpg: images/%.pdf Makefile
+	convert -density 1200 $< -quality 100 $@
