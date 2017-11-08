@@ -16,19 +16,11 @@
 .reveal h4,
 .reveal h5,
 .reveal h6 {
-  /*margin: 0 0 20px 0;*/
-  /*color: #000;*/
-  font-family: "News Cycle", Impact, sans-serif;
-  /*font-weight: normal;*/
   line-height: 1.0;
-  /*letter-spacing: normal;*/
-  /*text-transform: none;*/
-  /*text-shadow: none;*/
   word-wrap: break-word; }
 
   /* Ensure certain elements are never larger than the slide itself */
   .reveal img,
   .reveal video,
   .reveal iframe {
-    /*max-width: 95%;*/
     max-height: 70%; }
