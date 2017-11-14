@@ -17,7 +17,7 @@
                     <p><i class="fa fa-twitter" aria-hidden="true"></i> @ericmjl, <i class="fa fa-github"></i> ericmjl</p>
                     <p><i>PyData NYC 2017</i></p>
                 </section>
-                <section>
+                <section id="follow-along!">
                     <h2>Follow along!</h2>
                     <section>
                         <h3>On your phone</h3>
@@ -64,22 +64,22 @@
                     </p>
                 </section>
                 <section id="Linear Regression" data-transition="zoom">
-                    <section>
+                    <section id="linreg-title">
                         <h2>Linear Regression</h2>
                     </section>
-                    <section id="equation form">
+                    <section id="linreg-equation-form">
                         <h3>Function</h3>
                         <img src="images/linreg.tex.png" alt="" width=60%>
                     </section>
-                    <section id="matrix diagram">
+                    <section id="linreg-matrix-diagram">
                         <h3>Matrices</h3>
                         <img src="images/linreg-matrices.png" alt="" width=80%>
                     </section>
-                    <section id="neural diagram">
+                    <section id="linreg-neural diagram">
                         <h3>Neural Diagram</h3>
                         <img src="images/linreg-neural.png" alt="" width=60%>
                     </section>
-                    <section id="side-by-side">
+                    <section id="linreg-side-by-side">
                         <h3>LinReg 3 Ways</h3>
                         <img src="images/linreg-all.png" alt="" width=90%>
                     </section>
@@ -88,19 +88,19 @@
                     <section>
                         <h2>Logistic Regression</h2>
                     </section>
-                    <section id="equation form">
+                    <section id="logreg-equation-form">
                         <h3>Function</h3>
                         <img src="images/logreg.tex.png" alt="" width=40%>
                     </section>
-                    <section id="matrix diagram">
+                    <section id="logreg-matrix-diagram">
                         <h3>Matrices</h3>
                         <img src="images/logreg-matrices.png" alt="" width=70%>
                     </section>
-                    <section id="neural diagram">
+                    <section id="logreg-neural-diagram">
                         <h3>Neural Diagram</h3>
                         <img src="images/logreg-neural.png" alt="" width=70%>
                     </section>
-                    <section id="side-by-side">
+                    <section id="logreg-side-by-side">
                         <h3>LogReg 3 Ways</h3>
                         <img src="images/logreg-all.png" alt="" width=90%>
                     </section>
@@ -109,19 +109,19 @@
                     <section>
                         <h2>Deep Neural Networks</h2>
                     </section>
-                    <section id="equation form">
+                    <section id="dnn-equation-form">
                         <h3>Function</h3>
                         <img src="images/deepnet_regressor.tex.png" alt="" width=50%>
                     </section>
-                    <section id="matrix diagram">
+                    <section id="dnn-matrix-diagram">
                         <h3>Matrices</h3>
                         <img src="images/deepnet_regressor-matrices.png" alt="" width=50%>
                     </section>
-                    <section id="neural diagram">
+                    <section id="dnn-neural-diagram">
                         <h3>Neural Diagram</h3>
                         <img src="images/deepnet_regressor-neural.png" alt="" width=90%>
                     </section>
-                    <section id="side-by-side">
+                    <section id="dnn-side-by-side">
                         <h3>DeepNets 3 Ways</h3>
                         <img src="images/deepnet_regressor-all.png" alt="" width=90%>
                     </section>
@@ -136,10 +136,10 @@
                 </section>
 
                 <section id="Bayesian Linear Regression" data-transition="slide">
-                    <section data-transition="fade">
+                    <section id="bayesian linreg title" data-transition="fade">
                         <h2>Bayesian Linear Regression</h2>
                     </section>
-                    <section>
+                    <section id="intuition">
                         <h3>Intuition</h3>
                         <img src="images/linreg-estimates.png" alt="" width=60%>
                     </section>
@@ -182,7 +182,7 @@
                     <h2>Cheat Sheet</h2>
                     <img src="images/infographic.png" alt="" width=90%>
                 </section>
-                <section id="Examples Intro">
+                <section id="pymc3-intro">
                     <section>
                         <img src="https://github.com/pymc-devs/pymc3/blob/master/docs/pymc3_logo.jpg?raw=true" alt="" width=30%>
                         <p>Probabilistic Programming in Python. Provides:</p>
@@ -195,11 +195,11 @@
                 </section>
                 <section id="Bayesian Deep Net Multiclass Classification">
                     <h2>Predict Forest Cover Type</h2>
-                    <section id="intro">
+                    <section id="examples-intro">
                         <h3>Network Architecture</h3>
                         <img src="images/forest-cover.png" alt="" width=60%>
                     </section>
-                    <section id="code">
+                    <section id="examples-code">
                         <pre>
                             <code data-trim data-noescape class="py">
                             import theano.tensor as tt  # pymc devs are discussing new backends
@@ -239,35 +239,35 @@
                             </code>
                         </pre>
                     </section>
-                    <section id="Layer 1 Weights" data-transition="fade">
+                    <section id="layer-1-weights" data-transition="fade">
                         <h3>1st Layer Weights</h3>
                         <img src="images/layer1-weights.png" alt="" width=100%>
                     </section>
-                    <section id="Layer 2 Weights" data-transition="fade">
+                    <section id="layer-2-weights" data-transition="fade">
                         <h3>2nd Layer Weights</h3>
                         <img src="images/layer2-weights.png" alt="" width=100%>
                     </section>
-                    <section id="Output Weights" data-transition="fade">
+                    <section id="output-weights" data-transition="fade">
                         <h3>Output Weights</h3>
                         <img src="images/layer3-weights.png" alt="" width=100%>
                     </section>
-					<section id="Class Predictions" data-transition="fade">
+					<section id="class-predictions" data-transition="fade">
 	                   <h3>Class Predictions</h3>
                        <img src="images/class_predictions.png" alt="" width=50%>
-                       <p>"point estimate"</p>
+                       <p><i>"point estimate"</i></p>
 					</section>
-                    <section id="Class Probabilities" data-transition="fade">
+                    <section id="class-probabilities" data-transition="fade">
                         <h3>Class Probabilities</h3>
                         <img src="images/class_probabilities.png" alt="" width=50%>
-                        <p>"probabilistic estimate"</p>
+                        <p><i>"probabilistic estimate"</i></p>
                     </section>
-                    <section id="Class Uncertainties" data-transition="fade">
+                    <section id="class-uncertainties" data-transition="fade">
                         <h3>Class Uncertainties</h3>
                         <img src="images/class_uncertainties.png" alt="" width=50%>
-                        <p>"with uncertainties!"</p>
+                        <p><i>"with uncertainties!"</i></p>
                     </section>
                 </section>
-                <section id="Credits">
+                <section id="teachers">
                     <h2>Teachers</h2>
                     <p>
                         <ul>
@@ -277,7 +277,7 @@
                         </ul>
                     </p>
                 </section>
-                <section id="Resources">
+                <section id="people-to-read">
                     <h2>People to Read</h2>
                     <p>
                         <ul>
@@ -287,14 +287,14 @@
                     </p>
                 </section>
                 <section id="recap">
-                    <section data-transition="fade">
+                    <section id="recap-1" data-transition="fade">
                         <h2>Take-Home Point 1</h2>
                         <p>
                             Deep Learning is nothing more than <b>compositions of functions on matrices</b>.
                         </p>
                         <img src="images/deepnet_regressor-matrices.png" alt="" width=40%>
                     </section>
-                    <section data-transition="fade">
+                    <section id="recap-2" data-transition="fade">
                         <h2>Take-Home Point 2</h2>
                         <p>Bayesian deep learning is basically about <b>learning a distribution for each parameter</b>.</p>
                         <img src="images/deepnet_regressor-matrices-bayesian.png" alt="" width=40%>
@@ -312,6 +312,8 @@
                 margin: 0,
                 minScale: 1,
                 maxScale: 1,
+                // Push each slide change to the browser history
+                history: true,
                 dependencies: [
                     // Syntax highlight for <code> elements
                     { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
