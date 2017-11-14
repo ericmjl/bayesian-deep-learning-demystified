@@ -24,3 +24,13 @@
   .reveal video,
   .reveal iframe {
     max-height: 70%; }
+
+.footer {
+  position:absolute;
+  bottom: 0%;
+  left: 2%;
+}
+
+.footer p {
+    font-size: 20px;
+}
