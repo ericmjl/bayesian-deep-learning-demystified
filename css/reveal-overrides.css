@@ -34,3 +34,7 @@
 .footer p {
     font-size: 20px;
 }
+
+.reveal section img {
+    margin: 0px 0px;
+}
