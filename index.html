@@ -2,11 +2,13 @@
 	<head>
         <title>An Attempt at Demystifying Bayesian Deep Learning</title>
         <!-- Head.JS -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
         <script type="text/javascript" src="lib/js/head.min.js"></script>
         <link rel="stylesheet" href="lib/css/atom-one-light.css">
 		<link rel="stylesheet" href="css/reveal.css">
 		<link rel="stylesheet" href="css/theme/simple.css">
         <link rel="stylesheet" href="css/reveal-overrides.css">
+
     </head>
 	<body>
 		<div class="reveal">
@@ -29,6 +31,11 @@
                     </section>
                 </section>
 				<section id="Outline and Take-Home Points" data-transition="zoom">
+                    <section>
+                        <blockquote align="center" class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">The Hype of Deep Learning:<br>1. Write a post with ML, AI or GAN in the title.<br>2. post appears at the top of hackernews (despite your best efforts)<br>3. HN drives tens of thousands of clicks<br>4. &quot;what&#39;s with all the maths? show me pretty pics&quot;<br>5. &lt;=1% stay for longer than a minute</p>&mdash; Ferenc Huszár (@fhuszar) <a href="https://twitter.com/fhuszar/status/933682386713350145?ref_src=twsrc%5Etfw">November 23, 2017</a></blockquote>
+                        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8">
+                        </script>
+                    </section>
                     <section>
                         <h2>My (Modest) Goals</h2>
                         <p>
@@ -142,7 +149,12 @@
                     </section>
                     <section id="intuition">
                         <h3>Intuition</h3>
-                        <img src="images/linreg-estimates.png" alt="" width=60%>
+                        <table>
+                            <tr>
+                                <td align="center" class="fragment"><img src="images/linreg-non-bayesian.png" alt="" width=60%></td>
+                                <td align="center" class="fragment"><img src="images/linreg-bayesian.png" alt="" width=60%></td>
+                            </tr>
+                        </table>
                     </section>
                     <section data-transition="fade">
                         <h3>From this...</h3>
@@ -339,6 +351,8 @@
                 maxScale: 1,
                 // Push each slide change to the browser history
                 history: true,
+                // Display the page number of the current slide
+                slideNumber: true,
                 dependencies: [
                     // Syntax highlight for <code> elements
                     { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
