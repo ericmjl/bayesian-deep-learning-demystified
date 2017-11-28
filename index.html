@@ -31,7 +31,6 @@
                 </section>
 				<section id="Outline and Take-Home Points" data-transition="zoom">
                     <section>
-                        <h2>I am out to solve Point #4.</h2>
                         <blockquote align="center" class="twitter-tweet" data-lang="en">
                             <p lang="en" dir="ltr">The Hype of Deep Learning:
                                 <br>1. Write a post with ML, AI or GAN in the title.
@@ -40,7 +39,9 @@
                                 <br>4. &quot;what&#39;s with all the maths? show me pretty pics&quot;
                                 <br>5. &lt;=1% stay for longer than a minute
                             </p>&mdash; Ferenc Huszár (@fhuszar)
-                            <a href="https://twitter.com/fhuszar/status/933682386713350145?ref_src=twsrc%5Etfw">November 23, 2017</a></blockquote>
+                            <a href="https://twitter.com/fhuszar/status/933682386713350145?ref_src=twsrc%5Etfw">November 23, 2017</a>
+                        </blockquote>
+                        <p class="fragment"><b>I am out to solve Point 4.</b></p>
                         <script async src="https://platform.twitter.com/widgets.js" charset="utf-8">
                         </script>
                     </section>
@@ -79,7 +80,7 @@
                             <li class="fragment">Logistic Regression 3 Ways</li>
                             <li class="fragment">Deep Nets 3 Ways</li>
                             <li class="fragment">Going Bayesian</li>
-                            <li class="fragment">Example Neural Network</li>
+                            <li class="fragment">Example Neural Network with PyMC3</li>
                         </ol>
                     </p>
                 </section>
@@ -244,22 +245,24 @@
                             n_hidden = 20
 
                             with pm.Model() as nn_model:
-                                # Define weights
+                                # Input -> Layer 1
                                 weights_1 = pm.Normal('w_1', mu=0, sd=1,
                                                       shape=(ann_input.shape[1], n_hidden),
                                                       testval=init_1)
+                                acts_1 = pm.Deterministic('activations_1',
+                                                          tt.tanh(tt.dot(ann_input, weights_1)))
+
+                                # Layer 1 -> Layer 2
                                 weights_2 = pm.Normal('w_2', mu=0, sd=1,
                                                       shape=(n_hidden, n_hidden),
                                                       testval=init_2)
+                                acts_2 = pm.Deterministic('activations_2',
+                                                          tt.tanh(tt.dot(acts_1, weights_2)))
+
+                                # Layer 2 -> Output Layer
                                 weights_out = pm.Normal('w_out', mu=0, sd=1,
                                                         shape=(n_hidden, ann_output.shape[1]),
                                                         testval=init_out)
-
-                                # Define activations
-                                acts_1 = pm.Deterministic('activations_1',
-                                                          tt.tanh(tt.dot(ann_input, weights_1)))
-                                acts_2 = pm.Deterministic('activations_2',
-                                                          tt.tanh(tt.dot(acts_1, weights_2)))
                                 acts_out = pm.Deterministic('activations_out',
                                                             tt.nnet.softmax(tt.dot(acts_2, weights_out)))  # noqa
 
